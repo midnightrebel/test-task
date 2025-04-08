@@ -1,0 +1,45 @@
+ARG PROJECT_NAME=line_provider
+ARG PROJECT_PATH=/opt/$PROJECT_NAME
+ARG APP_NAME=src
+ARG APP_PATH=/opt/$PROJECT_NAME/$APP_NAME
+ARG POETRY_HOME=/opt/poetry
+ARG POETRY_CACHE_DIR=/opt/.cache/poetry
+ARG PYTHON_VERSION=3.10.15-slim
+ARG POETRY_VERSION=1.8.4
+
+FROM python:$PYTHON_VERSION
+ARG PROJECT_NAME
+ARG PROJECT_PATH
+ARG APP_NAME
+ARG APP_PATH
+ARG POETRY_HOME
+ARG POETRY_CACHE_DIR
+ARG POETRY_VERSION
+
+ENV \
+    PYTHONPATH=$APP_PATH \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONFAULTHANDLER=1
+ENV \
+    POETRY_HOME=$POETRY_HOME \
+    POETRY_VIRTUALENVS_IN_PROJECT=true \
+    POETRY_VIRTUALENVS_CREATE=true \
+    POETRY_NO_INTERACTION=1 \
+    POETRY_CACHE_DIR=$POETRY_CACHE_DIR
+
+RUN apt update &&\
+    apt install --no-install-recommends -y &&\
+    apt autoremove -y && apt clean -y && rm -rf /var/lib/apt/lists/*
+RUN pip install --upgrade pip &&\
+    pip install poetry==$POETRY_VERSION
+WORKDIR $PROJECT_PATH
+COPY ./pyproject.toml ./poetry.lock ./
+RUN poetry install --without dev && rm -rf $POETRY_CACHE_DIR/*
+
+COPY ./alembic.ini ./
+
+WORKDIR $APP_PATH
+COPY ./$APP_NAME ./
+
+WORKDIR $PROJECT_PATH

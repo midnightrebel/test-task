@@ -1,0 +1,31 @@
+# Editor directories
+.vscode/
+.idea/
+
+# Environments
+env/
+venv/
+.env/
+.venv/
+.env
+.venv
+.env.*
+.venv.*
+
+# Cache
+.pytest_cache
+.ruff_cache
+__pycache__/
+__pypackages__/
+django_cache/
+
+# Logs
+logs/
+*.log
+
+# Backup files
+*.bak
+
+# Others
+.git
+tests/
