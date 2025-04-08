@@ -8,10 +8,10 @@
 
 ### line-provider
 
-- API: [http://localhost/line-provider/](http://localhost/line-provider/)
-- Swagger (документация): [http://localhost/line-provider/docs/](http://localhost/line-provider/docs/)
+- API: [http://localhost:8000/line-provider/](http://localhost/line-provider/)
+- Swagger (документация): [http://localhost:8000/line-provider/docs/](http://localhost/line-provider/docs/)
 
 ### bet-maker
 
-- API: [http://localhost/bet-maker/](http://localhost/bet-maker/)
-- Swagger (документация): [http://localhost/bet-maker/docs/](http://localhost/bet-maker/docs/)
+- API: [http://localhost:8008/bet-maker/](http://localhost/bet-maker/)
+- Swagger (документация): [http://localhost:8008/bet-maker/docs/](http://localhost/bet-maker/docs/)
