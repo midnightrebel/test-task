@@ -3,7 +3,6 @@
 ## Сборка и запуск docker-compose
 
 ```bash
-~ cd bsw-test
 ~ docker compose up --build
 ```
 
